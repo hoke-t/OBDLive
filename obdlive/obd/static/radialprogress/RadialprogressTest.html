@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vizuly - Radial Progress</title>
+
+    <!-- We use google fonts for many of the examples, but they are not necessary -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Raleway:600,400,200' rel='stylesheet' type='text/css'>
+
+    <!-- Test container style sheets -->
+    <link rel="stylesheet" href="styles/examples.css">
+
+    <!-- Vizuly specific style sheets -->
+    <link rel="stylesheet" href="../lib/styles/vizuly.css">
+    <link rel="stylesheet" href="../lib/styles/vizuly_radial_progress.css">
+
+    <!-- Supporting test container files:  Vizuly does NOT rely on these -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/styles/cssmenu.css">
+    <script type="text/javascript" src="../lib/jquery-2.1.1.min.js"></script>
+    <script src="../lib/cssmenu.js"></script>
+
+    <!-- D3.js ... of course! -->
+    <script src="lib/d3.min.js"></script>
+
+    <!-- debug source scripts: start --> <!--
+    <script src="src/core/_namespace.js"></script>
+    <script src="src/theme/radialprogress.js"></script>
+    <script src="src/core/component.js"></script>
+    <script src="src/core/util.js"></script>
+    <script src="src/svg/gradient.js"></script>
+    <script src="src/svg/filter.js"></script>
+    <script src="src/viz/radialprogress.js"></script>
+
+    --> <!-- debug source scripts: end -->
+
+    <script src="lib/vizuly_core.min.js"></script>
+	<script src="lib/vizuly_radialprogress.min.js"></script>
+
+    <script src="radialprogress_test.js"></script>
+
+</head>
+
+<body>
+
+<div id='cssmenu'>
+    <ul class="main-menu">
+        <li class='active'>
+            <a><span>Display</span><br><span class="setting"></span></a>
+            <ul class="options" callback="changeSize">
+                <li id="currentDisplay" class="selected"><a></a></li>
+                <li item_value="1000,1000"><a>1000px - 1000px</a></li>
+                <li item_value="800,600"><a>800px - 600px</a></li>
+                <li item_value="375,667"><a>375px - 667px</a></li>
+                <li item_value="320,568"><a>320px - 568px</a></li>
+            </ul>
+        </li>
+        <li class='active'><a><span>Theme </span><br><span class="setting"></span></a>
+            <ul class="options" callback="changeSkin">
+                <li item_value="Fire"><a>Fire</a></li>
+                <li item_value="Business" class="selected"><a>Business</a></li>
+                <li item_value="White"><a>White</a></li>
+                <li item_value="Neon"><a>Neon</a></li>
+                <li item_value="Alert"><a>Alert</a></li>
+            </ul>
+        </li>
+        <li class='active'><a><span>End&nbsp;Cap </span><br><span class="setting"></span></a>
+            <ul class="options" callback="changeEndCap">
+                <li item_value="0"><a>Square</a></li>
+                <li class="selected" item_value="1"><a>Rounded</a></li>
+            </ul>
+        </li>
+        <li class='active'><a><span class="label">Value </span><br><span class="setting"></span></a>
+          <ul class="options" callback="changeData">
+                <li item_value="20"><a>20</a></li>
+                <li item_value="60"><a>60</a></li>
+                <li item_value="80"><a>80</a></li>
+                <li item_value="150" class="selected"><a>150</a></li>
+                <li item_value="250"><a>250</a></li>
+                <li item_value="350"><a>350</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<!-- Our main content container-->
+<div class="container" style="width:100%">
+    <div id="viz_container" class="z-depth-3">
+        <div id="div1" class="radial_container"></div>
+        <div id="div2" class="radial_container"></div>
+        <div id="div3" class="radial_container"></div>
+    </div>
+</div>
+
+
+<script>
+    //Once the document is ready we set javascript and page settings
+    var screenWidth;
+    var screenHeight = 600;
+
+    $(document).ready(function () {
+
+        var rect;
+        if (self==top) {
+            rect = document.body.getBoundingClientRect();
+        }
+        else {
+            rect =  parent.document.body.getBoundingClientRect();
+        }
+
+        //Set display size based on window size.
+        screenWidth = (rect.width < 960) ? Math.round(rect.width*.95) : Math.round((rect.width - 210) *.95)
+
+        d3.select("#currentDisplay")
+                .attr("item_value", screenWidth + "," + screenHeight)
+                .attr("class", "selected")
+                .html("<a>" + screenWidth + "px - " + screenHeight + "px</a>");
+
+
+        $("#cssmenu").menumaker({
+            title: "VIZULY RADIAL PROGRESS",
+            format: "multitoggle"
+        });
+
+        // Set the size of our container element.
+        viz_container = d3.selectAll("#viz_container")
+                .style("width", screenWidth + "px")
+                .style("height", "600px");
+
+        initialize();
+
+
+    });
+
+</script>
+
+
+</body>
+
+
+</html>

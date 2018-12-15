@@ -1,0 +1,64 @@
+{% extends 'obd/base.html' %}
+{% load static %}
+
+{% block css %}{% static 'obd/dashboard.css' %}{% endblock %}
+{% block js %}{% static 'obd/dashboard.js' %}{% endblock %}
+
+{% block title %}OBDLive Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <nav class="navbar navbar-expand navbar-light bg-light mb-1">
+        <a class="navbar-brand" href="#">OBDLive</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Dashboard<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dtcs' %}">Diagnostics</a>
+                </li>
+            </ul>
+        </div>
+    </nav> 
+    <div class="row">
+        <h1 style="margin: 0 auto;">OBDLive Dashboard</h1>
+    </div>
+    <br />
+    <div class="row">
+        <p>MAF air flow rate: <span id="maf-air-flow-rate">...</span> grams/sec </p>
+    </div>
+    <div class="row">
+        <p>Run time since engine start: <span id="run-time-since-engine-start">...</span> sec</p>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-center col-sm-12">
+            <span id="engine-rpm"></span>
+        </div>
+        <div class="col-md-4 text-center col-sm-12">
+            <span id="vehicle-speed"></span>
+        </div>
+        <div class="col-md-4 text-center col-sm-12">
+            <span id="engine-oil-temp"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-6 col-sm-12">
+            <div id="throttle-position" class="radialprogress"></div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div id="engine-load" class="radialprogress"></div>
+        </div>
+    </div>
+    <!--    <div class="row">
+        <p>Ethanol fuel percent: <span id="ethanol-fuel-percent">...</span></p>
+        </div>-->
+        <!--<div class="row">
+            <p>Engine fuel rate: <span id="engine-fuel-rate">...</span></p>
+            </div>-->
+            <!--<div class="row">
+                <p>Ambient air temperature: <span id="ambient-air-temperature">...</span></p>
+                </div>-->
+</div>
+{% endblock %}
+

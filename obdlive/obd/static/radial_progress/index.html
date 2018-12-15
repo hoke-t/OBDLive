@@ -1,0 +1,175 @@
+<!--
+/**
+Copyright (c) 2014 BrightPoint Consulting, Inc.
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+*/
+-->
+<!DOCTYPE html>
+<head>
+    <meta HTTP-EQUIV="X-UA-COMPATIBLE" CONTENT="IE=EmulateIE9" >
+    <script type="text/javascript" src="scripts/d3.min.js"></script>
+    <script type="text/javascript" src="scripts/radialProgress.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="styles/style.css">
+
+    <style>
+
+        body {
+            background-color: #FFFFFF;
+        }
+
+        #test .arc2 {
+            stroke-weight:0.1;
+            fill: #3660b0;
+        }
+
+        #outer {
+            background:#FFFFFF;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        #div1, #div2, #div3, #div4 {
+            width: 33%;
+            height: 200px;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        #div2 .arc {
+            stroke-weight: 0.1;
+            fill: #f0a417;
+        }
+
+        #div2 .arc2 {
+            stroke-weight: 0.1;
+            fill: #b00d08;
+        }
+
+        #div3 .arc {
+            stroke-weight: 0.1;
+            fill: #1d871b;
+        }
+
+
+        .selectedRadial {
+            border-radius: 3px;
+            background: #f4f4f4;
+            color: #000;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+            -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+            border: 1px solid rgba(200,200,200,0.85);
+        }
+
+        .radial {
+            border-radius: 3px;
+            background: #FFFFFF;
+            color: #000;
+
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+<div id='outer' style="margin-top:40px; padding:10px">
+    <div id="main" style="width:600px; height:200px; margin: 0px auto; ">
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div id="div3"></div>
+    </div>
+</div>
+
+
+
+<script language="JavaScript">
+
+    var div1=d3.select(document.getElementById('div1'));
+    var div2=d3.select(document.getElementById('div2'));
+    var div3=d3.select(document.getElementById('div3'));
+    var div4=d3.select(document.getElementById('div4'));
+
+    start();
+
+    function onClick1() {
+        deselect();
+        div1.attr("class","selectedRadial");
+    }
+
+    function onClick2() {
+        deselect();
+        div2.attr("class","selectedRadial");
+    }
+
+    function onClick3() {
+        deselect();
+        div3.attr("class","selectedRadial");
+    }
+
+    function labelFunction(val,min,max) {
+
+    }
+
+    function deselect() {
+        div1.attr("class","radial");
+        div2.attr("class","radial");
+        div3.attr("class","radial");
+    }
+
+    function start() {
+
+        var rp1 = radialProgress(document.getElementById('div1'))
+                .label("RADIAL 1")
+                .onClick(onClick1)
+                .diameter(150)
+                .value(78)
+                .render();
+
+        var rp2 = radialProgress(document.getElementById('div2'))
+                .label("RADIAL 2")
+                .onClick(onClick2)
+                .diameter(150)
+                .value(132)
+                .render();
+
+        var rp3 = radialProgress(document.getElementById('div3'))
+                .label("RADIAL 3")
+                .onClick(onClick3)
+                .diameter(150)
+                .minValue(100)
+                .maxValue(200)
+                .value(150)
+                .render();
+
+    }
+
+
+
+
+
+</script>
+
+</body>
+</html>

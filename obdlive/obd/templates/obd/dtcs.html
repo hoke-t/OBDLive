@@ -1,0 +1,48 @@
+{% extends 'obd/base.html' %}
+{% load static %}
+
+{% block css %}{% static 'obd/dtcs.css' %}{% endblock %}
+{% block js %}{% static 'obd/dtcs.js' %}{% endblock %}
+
+{% block title %}Diagnostic Trouble Codes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <nav class="navbar navbar-expand navbar-light bg-light mb-1">
+        <a class="navbar-brand" href="#">OBDLive</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Diagnostics<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row">
+        <h1 style="margin: 0 auto;">Diagnostic Trouble Codes</h1>
+    </div>
+    <div class="row">
+        
+        <div class="col-sm-1" style="margin-bottom: 0px;">
+            <img src="{% static 'obd/MIL Off.png' %}" width="84" height="50" />
+        </div>
+        <div class="col-sm-1">
+        <button type="button" class="btn btn-danger" id="clear-dtcs">Clear DTCs</button>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table" id="dtc-table">
+            <thead>
+                <th scope="col">DTC</th> 
+                <th scope="col">Description</th>
+                <th scope="col">More Information</th>
+            </thead>
+            <tbody id='dtc-body'></tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+

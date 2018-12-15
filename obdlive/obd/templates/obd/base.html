@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>{% block title %}OBDLive{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="OBDLive">
+        <meta name="author" content="Tanner Hoke">
+
+        <link rel="stylesheet" href="{% static 'bootstrap-4.0.0-dist/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'obd/base.css' %}">
+        <!--<link rel="stylesheet" href="{% static 'radialprogress/lib/styles/vizuly.css' %}">
+        <link rel="stylesheet" href="{% static 'radialprogress/lib/styles/visuly_radial_progress.css' %}">-->
+        <link rel="stylesheet" href="{% static 'radial_progress/styles/style.css' %}">
+        <link rel="stylesheet" href="{% block css %}{% endblock %}">
+        <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'bootstrap-4.0.0-dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'd3/d3.min.js' %}"></script>
+        <script src="{% static 'radial_progress/scripts/radialProgress.js' %}"></script>
+        <script src="{% static 'gauge/gauge.js' %}"></script>
+
+    </head>
+
+    <body>
+
+        {% block content %}{% endblock %}
+
+        <script src="{% block js %}{% endblock %}"></script>
+
+
+    </body>
+
+</html>

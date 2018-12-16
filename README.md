@@ -19,3 +19,7 @@ Make sure to set the expected baud rate in `canup.sh`. Then, simply ssh into the
 
 ## obdlive
 Once everything on the Pi is up and running, the Django app should start up with `python manage.py runserver`. Be sure that the device on which the Django app is running is on the same network as the Raspberry Pi. Change the IP address in `obdlive/obd/obdport.py` to that of the Raspberry Pi on the local network.
+
+### Dependencies
+* Django (2.0.2)
+* Django Channels (2.0.2)
